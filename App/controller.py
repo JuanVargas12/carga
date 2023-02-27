@@ -52,14 +52,11 @@ def load_data(control, filename):
     carga = cf.data_dir 
     print(cf.data_dir)
     import os
-    #path  os.path.join(cf.file_dir, "Data", "Challenge-1", "DIAN", "Salida_agregados_rebta_juridicos_AG-small.csv")
     path=r"C:\Users\57301\Documents\Segundo semestre\EDA\Reto1-G09\Data\Challenge-1\DIAN\Salida_agregados_renta_juridicos_AG-small.csv"
+    #  path = "../Data/DIAN/Salida_agregados_renta_juridicos_AG-small.csv"
     n_file = csv.DictReader(open(path,encoding ="utf-8"))
-    print(n_file)
-    n = ""
-    while n in n_file:
-        model.add_data(control,filename)
-    return model.data_size(control)
+    for linea in n_file:
+        model.add_data(control, linea)
 
 
 # Funciones de ordenamiento

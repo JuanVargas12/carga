@@ -65,6 +65,14 @@ def add_data(data_structs, data):
     """
     Función para agregar nuevos elementos a la lista
     """
+
+    print("Tratando de añadir data", data)
+
+    #  Este codigo es solo para mirar el contenido de la linea que estamos tratandod de agregar
+    import json
+    print(json.dumps(data, sort_keys=True, indent=4))
+
+    #  Este es el código que en teoría añade los datos, pero no creo que esté bien
     d = new_data(data["id"], data["info"])
     lt.addLast(data_structs["data"], data)
 
