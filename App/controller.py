@@ -29,14 +29,17 @@ import csv
 """
 El controlador se encarga de mediar entre la vista y el modelo.
 """
-
+csv.field_size_limit(2147483647)
 
 def new_controller():
     """
     Crea una instancia del modelo
     """
-    #TODO: Llamar la función del modelo que crea las estructuras de datos
-    pass
+    control = {
+        "model": None
+    }
+    control["model"] = model.new_data_structs()
+    return control
 
 
 # Funciones para la carga de datos
@@ -46,7 +49,17 @@ def load_data(control, filename):
     Carga los datos del reto
     """
     # TODO: Realizar la carga de datos
-    pass
+    carga = cf.data_dir 
+    print(cf.data_dir)
+    import os
+    #path  os.path.join(cf.file_dir, "Data", "Challenge-1", "DIAN", "Salida_agregados_rebta_juridicos_AG-small.csv")
+    path=r"C:\Users\57301\Documents\Segundo semestre\EDA\Reto1-G09\Data\Challenge-1\DIAN\Salida_agregados_renta_juridicos_AG-small.csv"
+    n_file = csv.DictReader(open(path,encoding ="utf-8"))
+    print(n_file)
+    n = ""
+    while n in n_file:
+        model.add_data(control,filename)
+    return model.data_size(control)
 
 
 # Funciones de ordenamiento
@@ -55,8 +68,11 @@ def sort(control):
     """
     Ordena los datos del modelo
     """
-    #TODO: Llamar la función del modelo para ordenar los datos
-    pass
+    start_time = get_time()
+    model.sort(control["model"])
+    end_time = get_time()
+    delta_t = delta_time(start_time, end_time)
+    return delta_t
 
 
 # Funciones de consulta sobre el catálogo
@@ -65,8 +81,8 @@ def get_data(control, id):
     """
     Retorna un dato por su ID.
     """
-    #TODO: Llamar la función del modelo para obtener un dato
-    pass
+    data = model.get_data(control["model"], id)
+    return data
 
 
 def req_1(control):
@@ -74,7 +90,8 @@ def req_1(control):
     Retorna el resultado del requerimiento 1
     """
     # TODO: Modificar el requerimiento 1
-    pass
+    req_1 = model.req_1(control["model"])
+    return req_1
 
 
 def req_2(control):
@@ -82,7 +99,8 @@ def req_2(control):
     Retorna el resultado del requerimiento 2
     """
     # TODO: Modificar el requerimiento 2
-    pass
+    req_2 = model.req_2(control["model"])
+    return req_2
 
 
 def req_3(control):
@@ -90,7 +108,8 @@ def req_3(control):
     Retorna el resultado del requerimiento 3
     """
     # TODO: Modificar el requerimiento 3
-    pass
+    req_3 = model.req_3(control["model"])
+    return req_3
 
 
 def req_4(control):
@@ -98,7 +117,8 @@ def req_4(control):
     Retorna el resultado del requerimiento 4
     """
     # TODO: Modificar el requerimiento 4
-    pass
+    req_4 = model.req_4(control["model"])
+    return req_4
 
 
 def req_5(control):
@@ -106,14 +126,17 @@ def req_5(control):
     Retorna el resultado del requerimiento 5
     """
     # TODO: Modificar el requerimiento 5
-    pass
+    req_5 = model.req_5(control["model"])
+    return req_5
+
 
 def req_6(control):
     """
     Retorna el resultado del requerimiento 6
     """
     # TODO: Modificar el requerimiento 6
-    pass
+    req_6 = model.req_6(control["model"])
+    return req_6
 
 
 def req_7(control):
@@ -121,7 +144,8 @@ def req_7(control):
     Retorna el resultado del requerimiento 7
     """
     # TODO: Modificar el requerimiento 7
-    pass
+    req_7 = model.req_7(control["model"])
+    return req_7
 
 
 def req_8(control):
@@ -129,7 +153,8 @@ def req_8(control):
     Retorna el resultado del requerimiento 8
     """
     # TODO: Modificar el requerimiento 8
-    pass
+    req_8 = model.req_8(control["model"])
+    return req_8
 
 
 # Funciones para medir tiempos de ejecucion
@@ -147,3 +172,13 @@ def delta_time(start, end):
     """
     elapsed = float(end - start)
     return elapsed
+
+
+def cargainpu(data_structs):
+    carga = cf.data.dir 
+    resul = carga + "Salida_agregados_rebta_juridicos_AG-small.csv"
+    n_file = csv.DictReader(open(resul,encoding ="utf-8"))
+    n = ""
+    while n in n_file:
+        model.add_taxes(data_structs,n)
+    return model.data_size(data_structs), model.orden.anios(data_structs)

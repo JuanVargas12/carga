@@ -27,9 +27,10 @@ from DISClib.ADT import list as lt
 from DISClib.ADT import stack as st
 from DISClib.ADT import queue as qu
 assert cf
-from tabulate import tabulate
-import traceback
+#from tabulate import tabulate
 
+default_limit = 1000
+sys.setrecursionlimit(default_limit*10)
 """
 La vista se encarga de la interacción con el usuario
 Presenta el menu de opciones y por cada seleccion
@@ -42,8 +43,8 @@ def new_controller():
     """
         Se crea una instancia del controlador
     """
-    #TODO: Llamar la función del controlador donde se crean las estructuras de datos
-    pass
+    control = controller.new_controller()
+    return control
 
 
 def print_menu():
@@ -57,6 +58,7 @@ def print_menu():
     print("7- Ejecutar Requerimiento 6")
     print("8- Ejecutar Requerimiento 7")
     print("9- Ejecutar Requerimiento 8")
+    print("10- Obtener dato dado un ID")
     print("0- Salir")
 
 
@@ -64,23 +66,26 @@ def load_data(control):
     """
     Carga los datos
     """
-    #TODO: Realizar la carga de datos
-    pass
+    data = controller.load_data(control, "Ruta")
+    print(data)
+    return data
+
 
 
 def print_data(control, id):
     """
         Función que imprime un dato dado su ID
     """
-    #TODO: Realizar la función para imprimir un elemento
-    pass
+    data = controller.get_data(control, id)
+    print("El dato con el ID", id, "es:", data)
+
 
 def print_req_1(control):
     """
         Función que imprime la solución del Requerimiento 1 en consola
     """
     # TODO: Imprimir el resultado del requerimiento 1
-    pass
+    print(controller.req_1(control))
 
 
 def print_req_2(control):
@@ -88,7 +93,7 @@ def print_req_2(control):
         Función que imprime la solución del Requerimiento 2 en consola
     """
     # TODO: Imprimir el resultado del requerimiento 2
-    pass
+    print(controller.req_2(control))
 
 
 def print_req_3(control):
@@ -96,7 +101,7 @@ def print_req_3(control):
         Función que imprime la solución del Requerimiento 3 en consola
     """
     # TODO: Imprimir el resultado del requerimiento 3
-    pass
+    print(controller.req_3(control))
 
 
 def print_req_4(control):
@@ -104,7 +109,7 @@ def print_req_4(control):
         Función que imprime la solución del Requerimiento 4 en consola
     """
     # TODO: Imprimir el resultado del requerimiento 4
-    pass
+    print(controller.req_4(control))
 
 
 def print_req_5(control):
@@ -112,7 +117,7 @@ def print_req_5(control):
         Función que imprime la solución del Requerimiento 5 en consola
     """
     # TODO: Imprimir el resultado del requerimiento 5
-    pass
+    print(controller.req_5(control))
 
 
 def print_req_6(control):
@@ -120,7 +125,7 @@ def print_req_6(control):
         Función que imprime la solución del Requerimiento 6 en consola
     """
     # TODO: Imprimir el resultado del requerimiento 6
-    pass
+    print(controller.req_6(control))
 
 
 def print_req_7(control):
@@ -128,7 +133,7 @@ def print_req_7(control):
         Función que imprime la solución del Requerimiento 7 en consola
     """
     # TODO: Imprimir el resultado del requerimiento 7
-    pass
+    print(controller.req_7(control))
 
 
 def print_req_8(control):
@@ -136,7 +141,7 @@ def print_req_8(control):
         Función que imprime la solución del Requerimiento 8 en consola
     """
     # TODO: Imprimir el resultado del requerimiento 8
-    pass
+    print(controller.req_8(control))
 
 
 # Se crea el controlador asociado a la vista
@@ -180,6 +185,10 @@ if __name__ == "__main__":
             elif int(inputs) == 9:
                 print_req_8(control)
 
+            elif int(inputs) == 10:
+                id = input("Ingrese un id: ")
+                print_data(control, id)
+
             elif int(inputs) == 0:
                 working = False
                 print("\nGracias por utilizar el programa")
@@ -188,5 +197,4 @@ if __name__ == "__main__":
                 print("Opción errónea, vuelva a elegir.\n")
         except ValueError:
             print("Ingrese una opción válida.\n")
-            traceback.print_exc()
     sys.exit(0)
