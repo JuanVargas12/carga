@@ -50,7 +50,7 @@ def new_data_structs():
     manera vacía para posteriormente almacenar la información.
     """
     data_structs = {
-        "data": None,
+        "data": None
     }
 
     data_structs["data"] = lt.newList(datastructure="ARRAY_LIST",
@@ -66,29 +66,45 @@ def add_data(data_structs, data):
     Función para agregar nuevos elementos a la lista
     """
 
-    print("Tratando de añadir data", data)
+    #print("Tratando de añadir data", data)
 
     #  Este codigo es solo para mirar el contenido de la linea que estamos tratandod de agregar
-    import json
-    print(json.dumps(data, sort_keys=True, indent=4))
+    #import json
+    #print(json.dumps(data, sort_keys=True, indent=4))
 
     #  Este es el código que en teoría añade los datos, pero no creo que esté bien
-    d = new_data(data["id"], data["info"])
-    lt.addLast(data_structs["data"], data)
-
-    print(data_structs)
-    return data_structs
+    #print (data_structs)
+    d = new_data(data["Año"], data["Código actividad económica"],data["Nombre actividad económica"], data ["Código sector económico"],
+                             data["Nombre sector económico"], data["Código subsector económico"],data["Nombre subsector económico"], 
+                             data ["Total ingresos netos"],data["Total costos y gastos"], data ["Total saldo a pagar"], data["Total saldo a favor"])
+    #print(d)
+    lt.addLast(data_structs["model"]["data"]["elements"], d)
+    #print(data_structs)
+    return d
 
 
 # Funciones para creacion de datos
 
-def new_data(id, info):
+def new_data(anio, codigo_actividad, nombre_actividad, codigo_sector, nombre_sector, codigo_subsector, nombre_subsector, total_ingresos, total_costos, total_saldo, total_saldo_favor):
+
     """
     Crea una nueva estructura para modelar los datos
     """
-    data = {'id': 0, "info": ""}
-    data["id"] = id
-    data["info"] = info
+    data = {"Año":0,"Código actividad económica":1,"Nombre actividad económica":2, "Código sector económico":3,"Nombre sector económico":4,
+                "Código subsector económico":5,"Nombre subsector económico":6,"Total ingresos netos": 7, "Total costos y gastos":8,           
+                "Total saldo a pagar":9,"Total saldo a favor":10}
+    data["Año"]= anio
+    data["Código actividad económica"]= codigo_actividad
+    data["Nombre actividad económica"]= nombre_actividad
+    data["Código sector económico"] =codigo_sector
+    data["Nombre sector económico"] =nombre_sector
+    data["Código subsector económico"] =codigo_subsector
+    data["Nombre subsector económico"] =nombre_subsector
+    data["Total ingresos netos"] =total_ingresos
+    data["Total costos y gastos"] =total_costos
+    data["Total saldo a pagar"] =total_saldo
+    data["Total saldo a favor"] =total_saldo_favor
+
 
     return data
 
