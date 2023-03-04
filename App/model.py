@@ -216,21 +216,17 @@ def impuestos_agre (data_structs, data):
     return data_structs
 
 def infor_impu(anio, codigo_actividad, nombre_actividad, codigo_sector, nombre_sector, codigo_subsector, nombre_subsector, total_ingresos, total_costos, total_saldo, total_saldo_favor):
+    tabla_info = {}
     
-    
-    tabla_info = {"Año":0,"Código actividad económica":1,"Nombre actividad económica":2, "Código sector económico":3,"Nombre sector económico":4,
-                "Código subsector económico":5,"Nombre subsector económico":6,
-                "Total ingresos netos": 7, "Total costos y gastos":8,           
-                "Total saldo a pagar":9,"Total saldo a favor":10}
-    tabla_info["Año"]= anio
-    tabla_info["Código actividad económica"]= codigo_actividad
+    tabla_info["Año"]= int(anio)
+    tabla_info["Código actividad económica"]= int(codigo_actividad)
     tabla_info["Nombre actividad económica"]=nombre_actividad
-    tabla_info["Código sector económico"] = codigo_sector
+    tabla_info["Código sector económico"] = int(codigo_sector)
     tabla_info["Nombre sector económico"] = nombre_sector
-    tabla_info["Código subsector económico"]=codigo_subsector
+    tabla_info["Código subsector económico"]=int(codigo_subsector)
     tabla_info["Nombre subsector económico"]=nombre_subsector
-    tabla_info["Total ingresos netos"]= total_ingresos
-    tabla_info["Total costos y gastos"]=total_costos
-    tabla_info["Total saldo a pagar"]=total_saldo
-    tabla_info["Total saldo a favor"]=total_saldo_favor
+    tabla_info["Total ingresos netos"]= int(total_ingresos)
+    tabla_info["Total costos y gastos"]=int(total_costos)
+    tabla_info["Total saldo a pagar"]=int(total_saldo)
+    tabla_info["Total saldo a favor"]=int(total_saldo_favor)
     return tabla_info
