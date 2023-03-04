@@ -162,9 +162,28 @@ if __name__ == "__main__":
             if int(inputs) == 1:
                 print("Cargando información de los archivos ....\n")
                 data = load_data(control)
-                print(tabulate(data,headers=["Año","Código actividad económica","Nombre actividad económica","Código sector económico","Nombre sector económico","Código subsector económico","Nombre subsector económico","Total ingresos netos", "Total costos y gastos","Total saldo a pagar","Total saldo a favor"]))
-                #a = pd.DataFrame(data,columns=["Año","Código actividad económica","Nombre actividad económica","Código sector económico","Nombre sector económico","Código subsector económico","Nombre subsector económico","Total ingresos netos", "Total costos y gastos","Total saldo a pagar","Total saldo a favor"]))
-                #print(a)
+                #  print(data)
+                headers={
+                    "Año": "Año",
+                    "Código actividad económica": "Código\nactividad\neconómica",
+                    "Nombre actividad económica": "Nombre actividad\neconómica",
+                    "Código sector económico": "Código\nsector\neconómico",
+                    "Nombre sector económico": "Nombre sector\neconómico",
+                    "Código subsector económico": "Código\nsubsector\neconómico",
+                    "Nombre subsector económico": "Nombre subsector\neconómico",
+                    "Total ingresos netos": "Total\ningresos\nnetos", 
+                    "Total costos y gastos": "Total\ncostos y\ngastos",
+                    "Total saldo a pagar": "Total\nsaldo a\npagar",
+                    "Total saldo a favor": "Total\nsaldo a\nfavor",
+                }
+                #  Probablemente no funciona porque el año es un string en vez de un entero
+                #intformats = {
+                        #"Año": "{0:,}",
+               # }
+                real_data = data["first"]["info"]["data"]["elements"]
+                print (data["first"]["info"]["data"]["elements"][0]["Año"])
+                # iprimiendo solo las primeras dos lineas con  [:2]
+                # print(tabulate(real_data[:],tablefmt="grid", maxcolwidths=18, headers=headers))
             elif int(inputs) == 2:
                 print_req_1(control)
 
