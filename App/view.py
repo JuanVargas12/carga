@@ -27,7 +27,9 @@ from DISClib.ADT import list as lt
 from DISClib.ADT import stack as st
 from DISClib.ADT import queue as qu
 assert cf
-#from tabulate import tabulate
+import traceback
+from tabulate import tabulate
+import pandas as pd
 
 default_limit = 1000
 sys.setrecursionlimit(default_limit*10)
@@ -66,8 +68,8 @@ def load_data(control):
     """
     Carga los datos
     """
-    controller.load_data(control, "Ruta")
-
+    data = controller.load_data(control, "Ruta")
+    return (data)
 
 
 def print_data(control, id):
@@ -75,6 +77,7 @@ def print_data(control, id):
         Función que imprime un dato dado su ID
     """
     data = controller.get_data(control, id)
+    
     print("El dato con el ID", id, "es:", data)
 
 
@@ -158,7 +161,10 @@ if __name__ == "__main__":
         try:
             if int(inputs) == 1:
                 print("Cargando información de los archivos ....\n")
-                load_data(control)
+                data = load_data(control)
+                print(tabulate(data,headers=["Año","Código actividad económica","Nombre actividad económica","Código sector económico","Nombre sector económico","Código subsector económico","Nombre subsector económico","Total ingresos netos", "Total costos y gastos","Total saldo a pagar","Total saldo a favor"]))
+                #a = pd.DataFrame(data,columns=["Año","Código actividad económica","Nombre actividad económica","Código sector económico","Nombre sector económico","Código subsector económico","Nombre subsector económico","Total ingresos netos", "Total costos y gastos","Total saldo a pagar","Total saldo a favor"]))
+                print(a)
             elif int(inputs) == 2:
                 print_req_1(control)
 
@@ -195,4 +201,5 @@ if __name__ == "__main__":
                 print("Opción errónea, vuelva a elegir.\n")
         except ValueError:
             print("Ingrese una opción válida.\n")
+            traceback.print_exc()
     sys.exit(0)
