@@ -20,16 +20,17 @@
  * along withthis program.  If not, see <http://www.gnu.org/licenses/>.
  """
 
+from DISClib.ADT import list as lt
 import config as cf
 import model
 import time
 import csv
-
+import os
 
 """
 El controlador se encarga de mediar entre la vista y el modelo.
 """
-csv.field_size_limit(2147483647)
+
 
 def new_controller():
     """
@@ -48,15 +49,18 @@ def load_data(control, filename):
     """
     Carga los datos del reto
     """
+    info=control["model"]
+    datos = cargainpu(info)
     # TODO: Realizar la carga de datos
-    carga = cf.data_dir 
-    print(cf.data_dir)
-    import os
-    path=r"C:\Users\57301\Documents\Segundo semestre\EDA\Reto1-G09\Data\Challenge-1\DIAN\Salida_agregados_renta_juridicos_AG-small.csv"
-    #  path = "../Data/DIAN/Salida_agregados_renta_juridicos_AG-small.csv"
+    return datos
+    
+def cargainpu(datos):
+    path=r"C:\Users\57301\Documents\Segundo semestre\EDA\carga\Data\Salida_agregados_renta_juridicos_AG-small.csv"
     n_file = csv.DictReader(open(path,encoding ="utf-8"))
-    for linea in n_file:
-        model.add_data(control, linea)
+    impuestos= lt.newList()
+    for linea in n_file:    
+        lt.addLast(impuestos, model.impuestos_agre(datos,linea))
+    return impuestos 
 
 
 # Funciones de ordenamiento
@@ -168,14 +172,4 @@ def delta_time(start, end):
     devuelve la diferencia entre tiempos de procesamiento muestreados
     """
     elapsed = float(end - start)
-    return elapsed
-
-
-def cargainpu(data_structs):
-    carga = cf.data.dir 
-    resul = carga + "Salida_agregados_rebta_juridicos_AG-small.csv"
-    n_file = csv.DictReader(open(resul,encoding ="utf-8"))
-    n = ""
-    while n in n_file:
-        model.add_taxes(data_structs,n)
-    return model.data_size(data_structs), model.orden.anios(data_structs)
+    return elapsed                                           
