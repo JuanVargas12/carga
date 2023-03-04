@@ -164,7 +164,7 @@ if __name__ == "__main__":
                 data = load_data(control)
                 print(tabulate(data,headers=["Año","Código actividad económica","Nombre actividad económica","Código sector económico","Nombre sector económico","Código subsector económico","Nombre subsector económico","Total ingresos netos", "Total costos y gastos","Total saldo a pagar","Total saldo a favor"]))
                 #a = pd.DataFrame(data,columns=["Año","Código actividad económica","Nombre actividad económica","Código sector económico","Nombre sector económico","Código subsector económico","Nombre subsector económico","Total ingresos netos", "Total costos y gastos","Total saldo a pagar","Total saldo a favor"]))
-                print(a)
+                #print(a)
             elif int(inputs) == 2:
                 print_req_1(control)
 
