@@ -192,7 +192,7 @@ if __name__ == "__main__":
                     
                 ]
                 real_data = data["first"]["info"]["data"]["elements"]
-                print (data["first"]["info"]["data"]["elements"][0]["Año"])
+                print (data["first"]["info"]["data"]["elements"][1]["Año"])
                 # el formato del tabulate
                 print(tabulate(real_data[:],tablefmt="grid", maxcolwidths=18, headers=headers, intfmt= intformats))
             elif int(inputs) == 2:
